@@ -17,7 +17,7 @@ To install the package directly from GitHub (replace `your-username/your-repo` w
 ```bash
 npm install git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
 # or
-yarn add git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
+yarn add chesscom-api-client@git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
 ```
 
 ## Usage
