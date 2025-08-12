@@ -18,7 +18,7 @@ export class ChessComClient {
       baseURL: "https://api.chess.com/pub",
       headers: {
         "User-Agent":
-          "chesscom-api-client/1.0.0 (https://github.com/Ignite-Tournaments/chesscom-api-client)", // Replace with your project details
+          "chesscom-ts-client/0.0.1 (https://github.com/jeffgodwyll/chesscom-ts-client)", // Replace with your project details
       },
     });
   }

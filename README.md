@@ -7,9 +7,9 @@ A fully typed TypeScript client library for the Chess.com Public API, focusing o
 To install the package from npm or Yarn:
 
 ```bash
-npm install chesscom-api-client
+npm install chesscom-ts-client
 # or
-yarn add chesscom-api-client
+yarn add chesscom-ts-client
 ```
 
 To install the package directly from GitHub (replace `your-username/your-repo` with the actual GitHub path and `main` with a specific branch or tag if desired):
