@@ -12,14 +12,6 @@ npm install chesscom-ts-client
 yarn add chesscom-ts-client
 ```
 
-To install the package directly from GitHub:
-
-```bash
-npm install git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
-# or
-yarn add chesscom-ts-client@git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
-```
-
 ## Usage
 
 Here's how to use the client to fetch player data:

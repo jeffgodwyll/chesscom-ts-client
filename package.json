@@ -27,7 +27,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "axios": "^1.4.0",
-    "chesscom-api-client": "git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main"
+    "axios": "^1.4.0"
   }
 }
