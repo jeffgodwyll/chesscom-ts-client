@@ -12,12 +12,12 @@ npm install chesscom-ts-client
 yarn add chesscom-ts-client
 ```
 
-To install the package directly from GitHub (replace `your-username/your-repo` with the actual GitHub path and `main` with a specific branch or tag if desired):
+To install the package directly from GitHub:
 
 ```bash
 npm install git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
 # or
-yarn add chesscom-api-client@git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
+yarn add chesscom-ts-client@git+https://github.com/jeffgodwyll/chesscom-ts-client.git#main
 ```
 
 ## Usage
@@ -25,27 +25,26 @@ yarn add chesscom-api-client@git+https://github.com/jeffgodwyll/chesscom-ts-clie
 Here's how to use the client to fetch player data:
 
 ```typescript
-import { ChessComClient } from 'chesscom-api-client';
+import { ChessComClient } from "chesscom-ts-client";
 
 async function main() {
   const client = new ChessComClient();
-  const username = 'erik'; // Replace with a valid Chess.com username
+  const username = "erik"; // Replace with a valid Chess.com username
 
   try {
     console.log(`Fetching profile for ${username}...`);
     const profile = await client.getPlayerProfile(username);
-    console.log('Player Profile:', profile.username, profile.followers);
+    console.log("Player Profile:", profile.username, profile.followers);
 
     console.log(`\nFetching stats for ${username}...`);
     const stats = await client.getPlayerStats(username);
-    console.log('Player Stats (Blitz Rating):', stats.chess_blitz?.last.rating);
+    console.log("Player Stats (Blitz Rating):", stats.chess_blitz?.last.rating);
 
     console.log(`\nFetching games for ${username}...`);
     const games = await client.getPlayerGames(username);
-    console.log('Player Games (first game URL):', games.games[0]?.url);
-
+    console.log("Player Games (first game URL):", games.games[0]?.url);
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
   }
 }
 
