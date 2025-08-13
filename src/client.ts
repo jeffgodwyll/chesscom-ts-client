@@ -49,9 +49,13 @@ export class ChessComClient {
    * Get a list of a player's games.
    * @param username The username of the player.
    */
-  public async getPlayerGames(username: string): Promise<PlayerGames> {
+  public async getPlayerGames(
+    username: string,
+    year: number,
+    monthString: string
+  ): Promise<PlayerGames> {
     const response = await this.axiosInstance.get<PlayerGames>(
-      `/player/${username}/games`
+      `/player/${username}/games/${year}/${monthString}`
     );
     return response.data;
   }
