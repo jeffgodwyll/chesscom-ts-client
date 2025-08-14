@@ -84,11 +84,19 @@ export interface PlayerStats {
   };
 }
 
+export interface GamePlayer {
+  rating: number;
+  result: string;
+  username: string;
+  "@id": string;
+  uuid: string;
+}
+
 export interface PlayerGame {
   url: string;
   pgn: string;
   fen: string;
-  start_time: number;
+  start_time?: number; // This field doesn't appear in the raw response
   time_control: string;
   end_time: number;
   rated: boolean;
@@ -99,16 +107,11 @@ export interface PlayerGame {
   tcn: string;
   uuid: string;
   initial_setup: string;
-  white: {
-    rating: number;
-    result: string;
-    username: string;
-  };
-  black: {
-    rating: number;
-    result: string;
-    username: string;
-  };
+  time_class: string;
+  rules: string;
+  eco?: string;
+  white: GamePlayer;
+  black: GamePlayer;
 }
 
 export interface PlayerGames {
@@ -124,7 +127,7 @@ export interface PlayerGamesToMove {
 }
 
 export interface PlayerClub {
-  '@id': string;
+  "@id": string;
   name: string;
   club_id: number;
   url: string;
@@ -145,7 +148,7 @@ export interface PlayerClubs {
 }
 
 export interface PlayerTeamMatch {
-  '@id': string;
+  "@id": string;
   name: string;
   url: string;
   players: {
@@ -171,7 +174,7 @@ export interface PlayerTeamMatches {
 }
 
 export interface PlayerTournament {
-  '@id': string;
+  "@id": string;
   name: string;
   url: string;
   status: string;
