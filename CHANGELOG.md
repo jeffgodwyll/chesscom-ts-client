@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.5 - 2025-08-18
+
+### Added
+
+- Comprehensive error handling for all API requests.
+- `ChessComError` class for detailed error information.
+
+### Fixed
+
+- Corrected a syntax error in the client module.
+- Resolved a typing issue in the error handling logic.
+- Updated Jest configuration to ignore the `dist` directory during test runs.
+
 ## 0.0.2 - 2025-01-28
 
 ### Changed
