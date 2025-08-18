@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import {
   PlayerProfile,
   PlayerStats,
@@ -8,17 +8,18 @@ import {
   PlayerClubs,
   PlayerTeamMatches,
   PlayerTournaments,
-} from "./types";
+} from './types';
+import { ChessComError } from './errors';
 
 export class ChessComClient {
   private axiosInstance: AxiosInstance;
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: "https://api.chess.com/pub",
+      baseURL: 'https://api.chess.com/pub',
       headers: {
-        "User-Agent":
-          "chesscom-ts-client/0.0.1 (https://github.com/jeffgodwyll/chesscom-ts-client)", // Replace with your project details
+        'User-Agent':
+          'chesscom-ts-client/0.0.1 (https://github.com/jeffgodwyll/chesscom-ts-client)', // Replace with your project details
       },
     });
   }
@@ -28,10 +29,14 @@ export class ChessComClient {
    * @param username The username of the player.
    */
   public async getPlayerProfile(username: string): Promise<PlayerProfile> {
-    const response = await this.axiosInstance.get<PlayerProfile>(
-      `/player/${username}`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerProfile>(
+        `/player/${username}`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -39,10 +44,14 @@ export class ChessComClient {
    * @param username The username of the player.
    */
   public async getPlayerStats(username: string): Promise<PlayerStats> {
-    const response = await this.axiosInstance.get<PlayerStats>(
-      `/player/${username}/stats`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerStats>(
+        `/player/${username}/stats`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -54,10 +63,14 @@ export class ChessComClient {
     year: number,
     monthString: string
   ): Promise<PlayerGames> {
-    const response = await this.axiosInstance.get<PlayerGames>(
-      `/player/${username}/games/${year}/${monthString}`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerGames>(
+        `/player/${username}/games/${year}/${monthString}`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -67,10 +80,14 @@ export class ChessComClient {
   public async getPlayerMonthlyArchives(
     username: string
   ): Promise<PlayerMonthlyArchives> {
-    const response = await this.axiosInstance.get<PlayerMonthlyArchives>(
-      `/player/${username}/games/archives`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerMonthlyArchives>(
+        `/player/${username}/games/archives`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -80,10 +97,14 @@ export class ChessComClient {
   public async getPlayerGamesToMove(
     username: string
   ): Promise<PlayerGamesToMove> {
-    const response = await this.axiosInstance.get<PlayerGamesToMove>(
-      `/player/${username}/games/to-move`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerGamesToMove>(
+        `/player/${username}/games/to-move`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -91,10 +112,14 @@ export class ChessComClient {
    * @param username The username of the player.
    */
   public async getPlayerClubs(username: string): Promise<PlayerClubs> {
-    const response = await this.axiosInstance.get<PlayerClubs>(
-      `/player/${username}/clubs`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerClubs>(
+        `/player/${username}/clubs`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -104,10 +129,14 @@ export class ChessComClient {
   public async getPlayerTeamMatches(
     username: string
   ): Promise<PlayerTeamMatches> {
-    const response = await this.axiosInstance.get<PlayerTeamMatches>(
-      `/player/${username}/matches`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerTeamMatches>(
+        `/player/${username}/matches`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 
   /**
@@ -117,9 +146,13 @@ export class ChessComClient {
   public async getPlayerTournaments(
     username: string
   ): Promise<PlayerTournaments> {
-    const response = await this.axiosInstance.get<PlayerTournaments>(
-      `/player/${username}/tournaments`
-    );
-    return response.data;
+    try {
+      const response = await this.axiosInstance.get<PlayerTournaments>(
+        `/player/${username}/tournaments`
+      );
+      return response.data;
+    } catch (error) {
+      throw ChessComError.fromAxiosError(error as AxiosError);
+    }
   }
 }

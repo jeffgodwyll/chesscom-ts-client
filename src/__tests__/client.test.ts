@@ -1,5 +1,6 @@
 import { ChessComClient } from '../client';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import { ChessComError } from '../errors';
 
 // Cast axios to a mocked version
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -51,6 +52,22 @@ describe('ChessComClient', () => {
     expect((client as any).axiosInstance.get).toHaveBeenCalledWith(`/player/${username}`);
   });
 
+  it('should throw a ChessComError when fetching a non-existent player profile', async () => {
+    const username = 'nonexistentuser';
+    const error = {
+      response: {
+        status: 404,
+        data: { message: 'Not Found' },
+      },
+    } as AxiosError;
+
+    (client as any).axiosInstance.get.mockRejectedValueOnce(error);
+
+    await expect(client.getPlayerProfile(username)).rejects.toThrow(
+      ChessComError
+    );
+  });
+
   it('should fetch player stats successfully', async () => {
     const mockStats = {
       chess_blitz: {
@@ -77,5 +94,21 @@ describe('ChessComClient', () => {
     expect(stats).toEqual(mockStats);
     expect((client as any).axiosInstance.get).toHaveBeenCalledTimes(1);
     expect((client as any).axiosInstance.get).toHaveBeenCalledWith(`/player/${username}/stats`);
+  });
+
+  it('should throw a ChessComError when fetching stats for a non-existent player', async () => {
+    const username = 'nonexistentuser';
+    const error = {
+      response: {
+        status: 404,
+        data: { message: 'Not Found' },
+      },
+    } as AxiosError;
+
+    (client as any).axiosInstance.get.mockRejectedValueOnce(error);
+
+    await expect(client.getPlayerStats(username)).rejects.toThrow(
+      ChessComError
+    );
   });
 });
