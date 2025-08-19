@@ -43,6 +43,35 @@ async function main() {
 main();
 ```
 
+## Error Handling
+
+The client throws a `ChessComError` when an API request fails. You can catch this error and inspect its properties for more details:
+
+```typescript
+import { ChessComClient, ChessComError } from 'chesscom-ts-client';
+
+const client = new ChessComClient();
+
+async function main() {
+  try {
+    // This will fail because the user does not exist
+    const profile = await client.getPlayerProfile('nonexistentuser123456789');
+    console.log(profile);
+  } catch (error) {
+    if (error instanceof ChessComError) {
+      console.error('Caught a Chess.com API error:');
+      console.error(`Message: ${error.message}`);
+      console.error(`Status code: ${error.statusCode}`);
+      console.error('Original error:', error.originalError);
+    } else {
+      console.error('An unexpected error occurred:', error);
+    }
+  }
+}
+
+main();
+```
+
 ## Available Player Endpoints
 
 The `ChessComClient` provides the following methods for player-related data:
